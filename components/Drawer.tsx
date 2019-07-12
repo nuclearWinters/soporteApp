@@ -1,5 +1,5 @@
 import React from "react"
-import { ScrollView, View, Image, TouchableOpacity, Text, StyleSheet } from "react-native"
+import { ScrollView, View, Image, TouchableOpacity, Text, StyleSheet, AsyncStorage, Alert } from "react-native"
 import Icon from "react-native-vector-icons/FontAwesome5"
 import { DrawerItemsProps } from "react-navigation"
 
@@ -19,6 +19,7 @@ const Drawer: React.FC<DrawerItemsProps> = props => {
             onPress={
               () => {
                 props.navigation.closeDrawer();
+                props.navigation.navigate("Main1")
               }
             }
           >
@@ -36,7 +37,12 @@ const Drawer: React.FC<DrawerItemsProps> = props => {
             activeOpacity={0.5} 
             onPress={
               () => {
-                props.navigation.closeDrawer();
+                AsyncStorage.removeItem("token")
+                .then(bool => {
+                  props.navigation.closeDrawer();
+                  props.navigation.navigate("NotLogged")
+                })
+                .catch(error => Alert.alert("Error. Intenta otra vez."))
               }
             }
           >

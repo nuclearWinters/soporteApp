@@ -5,9 +5,19 @@ import { createStore } from "redux"
 import { Provider } from "react-redux"
 import React from "react"
 
-reducer = (state, action) => state
+reducer = (state, action) => {
+    switch(action.type) {
+        case "SET_TOKEN":
+            return {
+                ...state,
+                token: action.payload
+            }
+        default:
+            return state
+    }
+}
 
-const INITIAL_STATE = {count: 0}
+const INITIAL_STATE = {token: ""}
 
 const store = createStore(reducer, INITIAL_STATE)
 

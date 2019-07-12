@@ -5,7 +5,7 @@ import Drawer from "./components/Drawer"
 import Detalle from "./components/Detalle"
 
 const AppNavigator = createStackNavigator({
-  Main: {
+  Main1: {
     screen: Main
   },
   Detalle: {
